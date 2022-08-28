@@ -1,0 +1,32 @@
+﻿@model ToDoTask
+
+@{
+    ViewData["Title"] = "Add Remind";
+}
+
+<h1>Add Remind</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Remind">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TaskId" />
+           <label asp-for="TaskStatus" class="control-label">
+                @Html.DisplayFor(model => model.TaskTitle)
+            </label>
+            <div class="form-group">
+                <label asp-for="TaskRemindDate" class="control-label"></label>
+                <input asp-for="TaskRemindDate" class="form-control" />
+                <span asp-validation-for="TaskRemindDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-dark" />
+                <a href="javascript:history.go(-1)" class="btn btn-outline-dark btn-sm">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

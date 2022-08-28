@@ -1,0 +1,49 @@
+﻿/* Tasks
+-------------------------------------------------- */
+.taskCheckbox {
+    z-index: 4;
+}
+
+.task-dropdown-menu {
+    width: 400px !important;
+}
+
+/* Error page
+-------------------------------------------------- */
+#icon {
+    flex: 33.33%;
+    max-width: 40%;
+    margin-bottom: 0%;
+}
+/* Notification icon
+-------------------------------------------------- */
+#numberNotification {
+    float: right;
+    margin-bottom: -50px;
+    margin-right: -5px;
+}
+
+@media only screen and (max-width: 600px) {
+    #numberNotification {
+        float: left;
+        margin-left: 70px;
+    }
+}
+
+/* Design
+-------------------------------------------------- */
+body {
+    background: #F9F5EB;
+}
+
+header {
+    background: #EAE3D2;
+}
+
+.dropdown-menu {
+    background: #F9F5EB;
+}
+
+.btn-borderless {
+    border: none;
+}

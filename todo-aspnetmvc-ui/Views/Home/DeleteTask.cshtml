@@ -1,0 +1,25 @@
+﻿@model todo_domain_entities.Data.Models.ToDoTask
+
+@{
+    ViewData["Title"] = "Delete Task";
+}
+
+<h1>Delete Task</h1>
+
+<h4>Are you sure you want to delete list "@Model.TaskTitle"?</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DeleteTask">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TaskId" />
+            <div>
+                <form asp-action="DeleteTask">
+                    <input type="hidden" asp-for="ListId" />
+                    <input type="submit" value="Delete" class="btn btn-outline-danger" />
+                    <a href="javascript:history.go(-1)" class="btn btn-outline-dark btn-sm">Back</a>
+                </form>
+            </div>
+        </form>
+    </div>
+</div>

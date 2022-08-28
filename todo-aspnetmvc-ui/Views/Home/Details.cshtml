@@ -1,0 +1,103 @@
+﻿@model ListTaskViewModel
+
+@{
+    ViewData["Title"] = "List Details";
+}
+
+@if (!Model.Tasks.Any())
+{
+    <h1>@Model.TDList.Name</h1>
+    <h5 class="text-center">
+        Ups! Your is list is empty.
+    </h5>
+    <div class="text-center">
+        <a asp-action="CreateTask" class="btn btn-outline-dark" role="button" aria-pressed="true">Create new task</a>
+    </div>
+}
+else
+{
+    <p>
+        <a asp-action="Create" class="btn btn-outline-dark" role="button" aria-pressed="true">Create new list</a>
+        <a asp-action="CreateTask" class="btn btn-outline-dark" role="button" aria-pressed="true">Create new task</a>
+        <a asp-action="Settings" class="btn btn-outline-dark" style="float:right" role="button" aria-pressed="true"><i class="fa-solid fa-gear"></i></a>
+    </p>
+    <h1>@Model.TDList.Name</h1>
+
+    @foreach (var item in Model.Tasks)
+    {
+
+        <div id="item-@item.TaskId" class="card task" data-completed=@item.TaskStatus data-duedate=@item.TaskDueDate>
+            <!-- Card with task -->
+            <div class="card-body">
+                <div class="form-check-inline">
+                    <label class="form-check-label taskCheckbox">
+                        @if (item.TaskStatus == Status.NotStarted){
+                            <input type="checkbox" class="custom-checkbox" title="Task: Not Started" disabled>
+                        }
+                        else if (item.TaskStatus == Status.InProgress)
+                        {
+                            <input type="checkbox" class="custom-checkbox indeterminate" id="taskCheckbox-@item.TaskId" title="Task: In Progress" disabled>
+                        }
+                        else
+                        {
+                            <input type="checkbox" class="custom-checkbox" id="taskCheckbox-@item.TaskId" value="2" title="Task: Completed" checked disabled>
+                        }
+                    </label>
+                </div>
+                <div class="form-check-inline col-3">
+                    <h5>@item.TaskTitle</h5>
+                </div>
+                <div class="form-check-inline task-date">
+                    @if (item.TaskDueDate != null)
+                    {
+                        Model.TaskDueDate = (DateTime)item.TaskDueDate;
+                        <p>
+                            Due Date:
+                            @Html.DisplayFor(model => model.TaskDueDate)
+                        </p>
+                    }
+                </div>
+
+                <!-- Settings button -->
+                <div class="d-inline text-right">
+                    <span style="float:right">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-dark btn-borderless dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton" 
+                                data-toggle="dropdown" 
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>  
+
+                            <div class="dropdown-menu dropdown-menu-right text-center task-dropdown-menu" 
+                                aria-labelledby="dropdownMenuButton">
+                                <ul class="nav justify-content-center">
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("UpdateStatus", "Home", new { id = item.TaskId })' class="nav-link text-dark">Update Status</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("EditTask", "Home", new { id = item.TaskId })' class="nav-link text-dark">Edit</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Remind", "Home", new { id = item.TaskId })' class="nav-link text-dark">Remind</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("DeleteTask", "Home", new { id = item.TaskId })' class="nav-link text-dark">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+
+                <a href='@Url.Action("DetailsTask", "Home", new { id = item.TaskId })' class="stretched-link"></a>
+            </div>
+      </div>
+    }
+}
+
+<div class="text-right">
+    <a asp-action="Index" class="btn btn-outline-dark btn-sm">Back</a>
+</div>

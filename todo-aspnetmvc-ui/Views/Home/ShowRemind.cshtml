@@ -1,0 +1,52 @@
+﻿@model ReminderViewModel
+
+@{
+    ViewData["Title"] = "Show Reminds";
+}
+
+@if (!Model.Tasks.Any())
+{
+    <h1>Your reminds</h1>
+    <h5 class="text-center">
+        Ups! Your is reminds is empty.
+    </h5>
+    <div class="text-center">
+        <a asp-action="CreateTask" class="btn btn-outline-dark" role="button" aria-pressed="true">Create new task</a>
+    </div>
+}
+else
+{
+    <h1>Your reminds</h1>
+
+    @foreach (var item in Model.Tasks)
+    {
+
+        <div id="remind-@item.TaskId" class="card remind" data-remind=show>
+            <div class="card-body">
+                <div class="form-check-inline col-3">
+                    <h5>@item.TaskTitle</h5>
+                </div>
+                <div class="form-check-inline col-6">
+                    @if (item.TaskDueDate != null)
+                    {
+                        Model.TaskDueDate = (DateTime)item.TaskDueDate;
+                        <h5 class="text-danger">Task due date is: @Html.DisplayFor(model => model.TaskDueDate)</h5>
+                    }
+                    else
+                    {
+                        <h5 class="text-danger">Task deadline is near!</h5>
+                    }
+                </div>
+                <div class="d-inline text-right">
+                    <span style="float:right">
+                        <button class="btn btn-outline-dark" onclick="hideRemind(this, 'remind-@item.TaskId')">X</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<div class="text-right">
+    <a href="javascript:history.go(-1)" class="btn btn-outline-dark btn-sm">Back</a>
+</div>

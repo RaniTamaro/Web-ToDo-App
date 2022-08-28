@@ -1,0 +1,34 @@
+﻿@model ToDoList
+
+@{
+    ViewData["Title"] = "Edit List";
+}
+
+<h1>Edit</h1>
+
+<h4>You edit list "@Model.Name"</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ListId" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label font-weight-bold"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div>
+                <form asp-action="Edit">
+                    <input type="hidden" asp-for="ListId" />
+                    <input type="submit" value="Edit" class="btn btn-outline-dark" />
+                    <a href="javascript:history.go(-1)" class="btn btn-outline-dark btn-sm">Back</a>
+                </form>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

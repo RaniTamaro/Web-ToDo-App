@@ -1,0 +1,25 @@
+﻿@model ToDoList
+
+@{
+    ViewData["Title"] = "Delete List";
+}
+
+<h1>Delete</h1>
+
+<h4>Are you sure you want to delete list "@Model.Name"?</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Delete">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ListId" />
+            <div>
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="ListId" />
+                    <input type="submit" value="Delete" class="btn btn-outline-danger" />
+                    <a href="javascript:history.go(-1)" class="btn btn-outline-dark btn-sm">Back</a>
+                </form>
+            </div>
+        </form>
+    </div>
+</div>

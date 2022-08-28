@@ -1,0 +1,61 @@
+﻿@model TaskViewModel
+
+@{
+    ViewData["Title"] = "Edit Task";
+}
+
+<h1>EditTask</h1>
+
+<h4>You edit list "@Model.TaskTitle"</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditTask">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Task.TaskId" />
+            <div class="form-group">
+                <label asp-for="Task.TaskStatus" class="control-label"></label>
+                <select asp-for="Task.TaskStatus" class="form-control" asp-items="@Html.GetEnumSelectList<Status>()"></select>
+                <span asp-validation-for="Task.TaskStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Task.TaskTitle" class="control-label"></label>
+                <input asp-for="Task.TaskTitle" class="form-control" />
+                <span asp-validation-for="Task.TaskTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Task.TaskDescription" class="control-label"></label>
+                <input asp-for="Task.TaskDescription" class="form-control" />
+                <span asp-validation-for="Task.TaskDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Task.TaskDueDate" class="control-label"></label>
+                <input asp-for="Task.TaskDueDate" class="form-control" />
+                <span asp-validation-for="Task.TaskDueDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Task.TaskNotes" class="control-label">Task notes:</label>
+                <textarea asp-for="Task.TaskNotes" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="Task.TaskNotes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Task.TaskTag" class="control-label">Task tag:</label>
+                <input asp-for="Task.TaskTag" class="form-control" />
+                <span asp-validation-for="Task.TaskTag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToDoLists" class="control-label"></label>
+                @Html.DropDownListFor(l => l.ToDoLists, new SelectList(Model.ToDoLists,"ListId", "Name"), new { @class = "form-control" })
+                <span asp-validation-for="ToDoLists" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-dark" />
+                <a href="javascript:history.go(-1)" class="btn btn-outline-dark btn-sm">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

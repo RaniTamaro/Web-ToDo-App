@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ToDoList>
+@{
+    ViewData["Title"] = "Just Remember";
+}
+
+<h1 class="text-center">Welcome in Just Remember</h1>
+<h5 class="text-center">Your To Do List Application</h5>
+<br />
+
+@if (Model is null)
+{
+    <p class="text-center">
+        Ups! Your is list is empty.
+        <a asp-action="Create" class="btn btn-outline-dark" role="button" aria-pressed="true">Create new list</a>
+    </p>
+}
+else
+{
+    <div>
+        <a asp-action="Create" class="btn btn-outline-dark" role="button" aria-pressed="true">Create new list</a>
+        <a asp-action="CreateTask" class="btn btn-outline-dark" role="button" aria-pressed="true">Create new task</a>
+        <a asp-action="Settings" class="btn btn-outline-dark" style="float:right" role="button" aria-pressed="true"><i class="fa-solid fa-gear"></i></a>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <!-- Card with task -->
+        <div class="card">
+            <div class="card-body">
+                <div class="bg-faded p-1">
+                    <h4>
+                        @item.Name
+                        <!-- Settingd button -->
+                        <span style="float:right">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-dark btn-borderless dropdown-toggle"
+                                    type="button"
+                                    id="dropdownMenuButton" 
+                                    data-toggle="dropdown" 
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>  
+
+                                <div class="dropdown-menu dropdown-menu-right text-center" 
+                                    aria-labelledby="dropdownMenuButton">
+                                    <ul class="nav justify-content-center">
+                                        <li class="nav-item">
+                                            <a href='@Url.Action("Edit", "Home", new { id = item.ListId })' class="nav-link text-dark">Edit</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href='@Url.Action("Copy", "Home", new { id = item.ListId })' class="nav-link text-dark">Copy</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href='@Url.Action("Delete", "Home", new { id = item.ListId })' class="nav-link text-dark">Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </span>
+                    </h4>
+                </div>
+
+
+                <a href="Home/Details/@item.ListId" class="stretched-link"></a>
+            </div>
+        </div>
+    }
+}
