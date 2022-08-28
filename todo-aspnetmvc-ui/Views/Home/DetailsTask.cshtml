@@ -58,17 +58,6 @@
                 @Html.DisplayFor(model => model.TaskNotes)
             </dd>
         }
-
-        @if (Model.TaskTag != null && Model.TaskTag != string.Empty)
-        {
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.TaskTag)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.TaskTag)
-            </dd>
-        }
-
     </dl>
 </div>
 <div>
