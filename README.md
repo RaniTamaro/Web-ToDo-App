@@ -1,11 +1,39 @@
-# Web ToDo Application
-<p>Project for programing course.
-<br>Application created with ASP.NET and Entity Framework.</p>
-<hr>
-<p>In this app you can add your own to do list and to do entries to these lists. Also in main page you can choose to show all reminder to your tasks.</p>
+# ToDo Application Web Version
+Simple ASP.NET To Do App created for programing course.
+
+## Table of Contents
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Appearance](#appearance)
+* [Setup](#setup)
+
+
+## Technologies Used
+- .NET Core - version 3.1
+- Bootstrap - version 4
+
+## Features
+- Web version creted with ASP.NET
+- DataBase created with Entity Framework (Code First)
+- All lists and tasks are saving in database
+- All informations are loading when app is start
+- User can add/edit/delete all lists and tasks in simple way (using FormCollection)
+- App has a reminder to task (created with JavaScript)
+- Reminder uses notification button with number of notification (or with star when user don't check it)
+- User can hide notification with "X" button
+
+## Appearance
+Main page
+
 <img src="https://i.imgur.com/iQbpEa9.png" alt="Main page of application">
-<p>On website you can add new lists and tasks.</p>
+
+Create new list
+
 <img src="https://i.imgur.com/pNztr32.png" alt="Adding new list view">
-<p>With FormCollection all informations are saving in database. So, application use database to store all to do list and to do entries. Load them when application is starting.
-<br>With notification button you can see the red star/number. It's a number of notification that you have. You can hide reminds with the "X" button.</p>
+
+Notification button
+
 <img src="https://i.imgur.com/AUtS5xd.png" alt="Notification button.">
+
+## Setup
+Clone this repository to your desktop and open it in your Visual Studio.
